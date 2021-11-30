@@ -2,14 +2,15 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 17:14:10
- * @LastEditTime: 2021-11-29 09:32:58
+ * @LastEditTime: 2021-11-29 10:16:08
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\App.vue
  * @Description:
 -->
 <template>
-  App.vue
-  <router-view></router-view>
+  <div class="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,4 +20,8 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.app {
+  height: 100%;
+}
+</style>

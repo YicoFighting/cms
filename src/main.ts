@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 17:14:10
- * @LastEditTime: 2021-11-29 09:51:41
+ * @LastEditTime: 2021-11-29 21:06:30
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\main.ts
  * @Description:
@@ -38,69 +38,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import register from './global'
-import service from './service'
 import 'normalize.css'
 import '@/assets/css/index.css'
+import { setupStore } from './store'
 const app = createApp(App)
 app.use(router)
 app.use(store)
 register(app)
+//重新运行就会调用setupStore
+setupStore()
 app.mount('#app')
-
-interface DataType {
-  data: any
-  returnCode: string
-  success: boolean
-}
-service
-  .request<DataType>({
-    method: 'get',
-    url: '/home/multidata',
-    interceptors: {
-      requestInterceptor: (config) => {
-        console.log('单独:单独请求的config')
-        return config
-      },
-      responseInterceptor: (res) => {
-        console.log('单独:处理响应结果')
-        return res
-      }
-    }
-    //单独请求要单独处理  是否需要loading  默认为true
-    // showLoading: true
-  })
-  //res: DataType
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-
-service
-  .get<DataType>({
-    url: '/home/multidata',
-    interceptors: {
-      requestInterceptor: (config) => {
-        console.log('单独:单独请求的config')
-        return config
-      },
-      responseInterceptor: (res) => {
-        console.log('单独:处理响应结果')
-        return res
-      }
-    }
-    //单独请求要单独处理  是否需要loading  默认为true
-    // showLoading: true
-  })
-  //res: DataType
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
