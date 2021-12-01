@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
-    "element-plus": "^1.2.0-beta.4",
+    "element-plus": "1.0.2-beta.62",
     "husky-init": "^7.0.0",
     "normalize.css": "^8.0.1",
     "vue": "^3.2.23",

@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-29 10:52:27
- * @LastEditTime: 2021-11-29 18:24:34
+ * @LastEditTime: 2021-12-01 08:45:24
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\views\login\cpns\login-account.vue
  * @Description:
@@ -36,7 +36,7 @@ export default defineComponent({
     })
     const formRef = ref<InstanceType<typeof ElForm>>()
     const loginAction = (isKeepPassword: boolean) => {
-      formRef.value?.validate((valid: boolean) => {
+      formRef.value?.validate((valid) => {
         if (valid) {
           //1、是否需要记住密码
           if (isKeepPassword) {

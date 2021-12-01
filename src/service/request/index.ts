@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-27 20:53:36
- * @LastEditTime: 2021-11-29 18:27:09
+ * @LastEditTime: 2021-12-01 08:37:40
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\service\request\index.ts
  * @Description:
@@ -10,11 +10,9 @@
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { zyRequestConfig, zyRequestInterceptors } from './type'
-//babel-plugin-import:下一句不需要引用
-import 'element-plus/theme-chalk/el-loading.css'
 import { ElLoading } from 'element-plus'
 //这个element-plus版本不同的话,路径可能不同
-import { ILoadingInstance } from 'element-plus/lib/components/loading/src/loading.type'
+import { ILoadingInstance } from 'element-plus/lib/el-loading/src/loading.type'
 //保持常量一致  默认loading为true
 const DEFAULT_LOADING = true
 class zyRequest {
