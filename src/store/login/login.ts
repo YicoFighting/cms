@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-28 16:32:22
- * @LastEditTime: 2021-11-30 07:53:25
+ * @LastEditTime: 2021-12-01 17:08:31
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\store\login\login.ts
  * @Description:
@@ -25,6 +25,8 @@ import { IAccount } from '@/service/login/type'
 import LocalCache from '@/utils/cache'
 //路由
 import router from '@/router'
+//动态路由
+import { mapMunusToRoutes } from '@/utils/map-menus'
 //Module<s,r>:有两个泛型,一定要传
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -49,6 +51,13 @@ const loginModule: Module<ILoginState, IRootState> = {
     //设置vuex的userMenus
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+
+      //userMenus =>> routesn type===2  进行映射
+      const routes = mapMunusToRoutes(userMenus)
+      //将routes=>>router.main.chilcren
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {

@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 19:33:40
- * @LastEditTime: 2021-11-30 20:58:58
+ * @LastEditTime: 2021-12-01 15:08:02
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\views\main\main.vue
  * @Description:
@@ -17,7 +17,11 @@
         <el-header class="page-header">
           <nav-header @foldChange="handleFoldChange"></nav-header>
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>

@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 17:14:10
- * @LastEditTime: 2021-11-30 20:15:27
+ * @LastEditTime: 2021-12-01 23:14:37
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\main.ts
  * @Description:
@@ -42,9 +42,12 @@ import 'normalize.css'
 import '@/assets/css/index.css'
 import { setupStore } from './store'
 const app = createApp(App)
-app.use(router)
-app.use(store)
-register(app)
 //重新运行就会调用setupStore
 setupStore()
+app.use(store)
+//install:获取当前path=>>匹配路径(当前动态路由为空,只有静态路由)=>>放在后面才能匹配到,放到前面只能匹配not-found
+//注册动态路由(执行这个函数setupStore,动态路由有值)
+//路由守卫(回调):能看到所有的路由,但是执行时早已经匹配好了(not-found)
+app.use(router)
+register(app)
 app.mount('#app')
