@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-29 19:29:46
- * @LastEditTime: 2021-11-30 08:10:58
+ * @LastEditTime: 2021-12-02 15:41:20
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\service\login\login.ts
  * @Description:
@@ -11,7 +11,8 @@ import service from '../index'
 //IAccount:登录时传入账号、密码的类型
 //IDataType:表示通用响应数据的类型(data:默认是any,当传入值的时候发生改变)
 //ILoginResult:指定通用响应数据类型中data的类型  改变默认值
-import { IAccount, IDataType, ILoginResult } from './type'
+import { IAccount, ILoginResult } from './type'
+import { IDataType } from '@/service/type'
 enum LoginAPI {
   AccountLogin = '/login',
   LoginUserInfo = '/users/', //user/1

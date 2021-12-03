@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-27 20:53:36
- * @LastEditTime: 2021-12-01 08:37:40
+ * @LastEditTime: 2021-12-02 15:37:27
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\service\request\index.ts
  * @Description:
@@ -89,7 +89,7 @@ class zyRequest {
     )
   }
   //返回的类型,让请求函数告诉它
-  request<T>(config: zyRequestConfig<T>): Promise<T> {
+  request<T = any>(config: zyRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       //1、单个请求对请求config的处理
       //发起axios时调用 将config传进来 单独请求的config
@@ -138,19 +138,19 @@ class zyRequest {
     })
   }
   //封装get请求  查
-  get<T>(config: zyRequestConfig<T>): Promise<T> {
+  get<T = any>(config: zyRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
   //封装post请求  增
-  post<T>(config: zyRequestConfig<T>): Promise<T> {
+  post<T = any>(config: zyRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
   //封装delete请求 删
-  delete<T>(config: zyRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: zyRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
   //封装patch请求  改
-  patch<T>(config: zyRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: zyRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }

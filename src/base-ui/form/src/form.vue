@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 15:29:29
- * @LastEditTime: 2021-12-02 11:09:22
+ * @LastEditTime: 2021-12-03 08:43:16
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\base-ui\form\src\form.vue
  * @Description:
@@ -26,8 +26,10 @@
               >
                 <!-- EsLint:'vue/no-mutating-props': 0 -->
                 <!-- v-model="formData[`${item.field}`]" -->
+                <!-- v-model="formData[`${item.field}`]" -->
                 <el-input
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
                   :show-password="item.type === 'password'"
@@ -35,7 +37,8 @@
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
@@ -51,7 +54,8 @@
               </template>
               <template v-else-if="item.type === 'datepicker'">
                 <el-date-picker
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:modelValue="handleValueChange($event, item.field)"
                   style="width: 100%"
                   v-bind="item.otherOptions"
                 ></el-date-picker>
@@ -68,7 +72,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue'
+// import { defineComponent, PropType, ref, watch } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { IFormItem } from '../types'
 export default defineComponent({
   props: {
@@ -114,18 +119,27 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const formData = ref({ ...props.modelValue })
-    watch(
-      formData,
-      (newVal) => {
-        emit('update:modelValue', newVal)
-      },
-      {
-        deep: true,
-        immediate: true
-      }
-    )
-    return { formData }
+    //双向绑定
+    //拷贝  所以modelValue不影响formData
+    //浅拷贝  它是引用的
+    // const formData = ref({ ...props.modelValue })
+    //页面改变
+    // watch(
+    //   formData,
+    //   (newVal) => {
+    //     emit('update:modelValue', newVal)
+    //   },
+    //   {
+    //     deep: true,
+    //     immediate: true
+    //   }
+    // )
+    // return { formData }
+
+    const handleValueChange = (value: any, field: string) => {
+      emit('update:modelValue', { ...props.modelValue, [field]: value })
+    }
+    return { handleValueChange }
   }
 })
 </script>

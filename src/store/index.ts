@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 19:49:09
- * @LastEditTime: 2021-11-30 16:34:20
+ * @LastEditTime: 2021-12-02 15:18:10
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\store\index.ts
  * @Description:
@@ -11,10 +11,11 @@
 import { createStore, Store, useStore as userVuexStore } from 'vuex'
 import login from './login/login'
 import { IRootState, IStoreType } from './types'
-
+import system from './main/system/system'
 const store = createStore<IRootState>({
   modules: {
-    login
+    login,
+    system
   }
 })
 export function setupStore() {
