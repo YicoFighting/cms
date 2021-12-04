@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 20:47:58
- * @LastEditTime: 2021-12-03 11:17:14
+ * @LastEditTime: 2021-12-03 14:55:45
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\components\page-search\src\page-search.vue
  * @Description:
@@ -25,7 +25,13 @@
             >
               重置
             </el-button>
-            <el-button type="primary" icon="el-icon-search">检索</el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-search"
+              @click="handleQueryClick"
+            >
+              检索
+            </el-button>
           </div>
         </h1>
       </template>
@@ -45,7 +51,8 @@ export default defineComponent({
       require: true
     }
   },
-  setup(props) {
+  emits: ['resetBtnClick', 'queryBtnClick'],
+  setup(props, { emit }) {
     //双向绑定的属性应该是由配置文件的field来决定
     //1、优化一：formData中的属性应该动态来决定
     const formItems = props.formConfig?.formItems ?? []
@@ -64,8 +71,14 @@ export default defineComponent({
       // }
 
       formData.value = formOriginData
+      emit('resetBtnClick')
     }
-    return { formData, handleResetClick }
+
+    //3、优化三：当用户点击搜索
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
+    }
+    return { formData, handleResetClick, handleQueryClick }
   }
 })
 </script>

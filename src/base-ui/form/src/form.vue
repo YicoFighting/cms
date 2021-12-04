@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 15:29:29
- * @LastEditTime: 2021-12-03 08:43:16
+ * @LastEditTime: 2021-12-03 21:04:57
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\base-ui\form\src\form.vue
  * @Description:
@@ -17,6 +17,7 @@
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
             <el-form-item
+              v-if="!item.isHidden"
               :style="itemStyle"
               :label="item.label"
               :rules="item.rules"

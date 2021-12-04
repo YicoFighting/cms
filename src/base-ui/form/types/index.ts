@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 15:35:26
- * @LastEditTime: 2021-12-02 20:19:02
+ * @LastEditTime: 2021-12-03 20:41:49
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\base-ui\form\types\index.ts
  * @Description:
@@ -18,6 +18,8 @@ export interface IFormItem {
   options?: any[]
   //针对特殊的属性
   otherOptions?: any
+  //是否显示
+  isHidden?: boolean
 }
 
 export interface IForm {

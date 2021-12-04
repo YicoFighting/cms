@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 10:51:31
- * @LastEditTime: 2021-12-01 22:49:25
+ * @LastEditTime: 2021-12-03 18:18:03
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\utils\map-menus.ts
  * @Description:
@@ -68,4 +68,21 @@ export function pathMapToMenu(
     }
   }
 }
+export function mapMenusToPermissions(userMenus: any[]) {
+  const permissions: string[] = []
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        permissions.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+
+  return permissions
+}
+
 export { firstMenu }

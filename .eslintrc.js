@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 17:14:10
- * @LastEditTime: 2021-12-01 20:07:59
+ * @LastEditTime: 2021-12-03 20:57:10
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\.eslintrc.js
  * @Description:
@@ -29,6 +29,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
-    'vue/no-mutating-props': 0
+    'vue/no-mutating-props': 0,
+    '@typescript-eslint/no-non-null-assertion': 0
   }
 }

@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-28 16:32:22
- * @LastEditTime: 2021-12-01 17:08:31
+ * @LastEditTime: 2021-12-03 18:20:55
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\store\login\login.ts
  * @Description:
@@ -26,7 +26,7 @@ import LocalCache from '@/utils/cache'
 //路由
 import router from '@/router'
 //动态路由
-import { mapMunusToRoutes } from '@/utils/map-menus'
+import { mapMunusToRoutes, mapMenusToPermissions } from '@/utils/map-menus'
 //Module<s,r>:有两个泛型,一定要传
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -35,7 +35,8 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: []
+      userMenus: [],
+      permissions: []
     }
   },
   getters: {},
@@ -58,6 +59,10 @@ const loginModule: Module<ILoginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
+
+      //获取用户按钮的权限
+      const permissions = mapMenusToPermissions(userMenus)
+      state.permissions = permissions
     }
   },
   actions: {
