@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 10:51:31
- * @LastEditTime: 2021-12-04 15:23:07
+ * @LastEditTime: 2021-12-05 10:25:21
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\utils\map-menus.ts
  * @Description:
@@ -59,7 +59,7 @@ export function pathMapToMenu(
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       if (findMenu) {
         // breadcrumbs?.push({ name: menu.name, path: menu.url })
-        breadcrumbs?.push({ name: menu.name })
+        breadcrumbs?.push({ name: menu.name, path: findMenu.url })
         breadcrumbs?.push({ name: findMenu.name, path: findMenu.url })
         return findMenu
       }
