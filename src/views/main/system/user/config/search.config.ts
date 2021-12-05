@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 16:49:37
- * @LastEditTime: 2021-12-03 14:47:06
+ * @LastEditTime: 2021-12-04 09:10:25
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\views\main\system\user\config\search.config.ts
  * @Description:
@@ -10,7 +10,7 @@
 import { IForm } from '@/base-ui/form'
 export const formConfig: IForm = {
   labelWidth: '120px',
-  itemLayout: { padding: '10px 40px' },
+  itemStyle: { padding: '10px 40px' },
   colLayout: {
     span: 8
   },

@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-28 16:32:22
- * @LastEditTime: 2021-12-03 18:20:55
+ * @LastEditTime: 2021-12-04 10:56:35
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\store\login\login.ts
  * @Description:
@@ -67,7 +67,7 @@ const loginModule: Module<ILoginState, IRootState> = {
   },
   actions: {
     //参数必须是:IAccount类型   service也做了限制
-    async accountLoginAction({ commit }, payload: IAccount) {
+    async accountLoginAction({ commit, dispatch }, payload: IAccount) {
       //1、实现登录逻辑
       const loginResult = await accountLoginRequest(payload)
       const { id, token } = loginResult.data
@@ -75,6 +75,10 @@ const loginModule: Module<ILoginState, IRootState> = {
       commit('changeToken', token)
       //本地缓存
       LocalCache.setCache('token', token)
+
+      //发送初始化的请求(完整的role/department)
+      //调用根root的action
+      dispatch('getInitialDataAction', null, { root: true })
 
       //2、请求用户信息
       const userInfoResult = await requestUserInfoById(id)
@@ -96,12 +100,13 @@ const loginModule: Module<ILoginState, IRootState> = {
       router.push('/main')
     },
     //从本地存储读取到vuex  刷新时,vuex还在(永久保存)
-    loadLocalLogin({ commit }) {
+    loadLocalLogin({ commit, dispatch }) {
       const token = LocalCache.getCache('token')
       const userInfo = LocalCache.getCache('userInfo')
       const userMenu = LocalCache.getCache('userMenu')
       if (token) {
         commit('changeToken', token)
+        dispatch('getInitialDataAction', null, { root: true })
       }
       if (userInfo) {
         commit('changeUserInfo', userInfo)

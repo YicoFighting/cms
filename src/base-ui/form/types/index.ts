@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 15:35:26
- * @LastEditTime: 2021-12-03 20:41:49
+ * @LastEditTime: 2021-12-04 09:09:59
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\base-ui\form\types\index.ts
  * @Description:
@@ -26,5 +26,5 @@ export interface IForm {
   formItems: IFormItem[]
   labelWidth?: string
   colLayout?: any
-  itemLayout?: any
+  itemStyle?: any
 }

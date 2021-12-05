@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 10:51:31
- * @LastEditTime: 2021-12-03 18:18:03
+ * @LastEditTime: 2021-12-04 15:23:07
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\utils\map-menus.ts
  * @Description:
@@ -84,5 +84,19 @@ export function mapMenusToPermissions(userMenus: any[]) {
 
   return permissions
 }
-
+//叶子节点
+export function getMenuLeafKeys(menuList: any[]) {
+  const leftKeys: number[] = []
+  const _recurseGetLeaf = (menuList: any[]) => {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetLeaf(menu.children)
+      } else {
+        leftKeys.push(menu.id)
+      }
+    }
+  }
+  _recurseGetLeaf(menuList)
+  return leftKeys
+}
 export { firstMenu }

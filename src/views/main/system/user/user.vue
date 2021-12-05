@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-01 10:21:08
- * @LastEditTime: 2021-12-03 21:00:12
+ * @LastEditTime: 2021-12-04 19:30:39
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\views\main\system\user\user.vue
  * @Description:
@@ -13,7 +13,6 @@
       <page-search
         @resetBtnClick="handleResetClick"
         @queryBtnClick="handleQueryClick"
-        :userList="userList"
         :formConfig="formConfig"
       ></page-search>
     </div>
@@ -26,16 +25,17 @@
         :contentTableConfig="contentTableConfig"
       ></page-content>
       <page-modal
+        pageName="users"
         :defaultInfo="defaultInfo"
         ref="pageModalRef"
-        :modalConfig="modalConfig"
+        :modalConfig="modalConfigRef"
       ></page-modal>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import PageSearch from '@/components/page-search'
 import { formConfig } from './config/search.config'
 import PageModal from '@/components/page-modal'
@@ -44,6 +44,7 @@ import { contentTableConfig } from './config/content.config'
 import { usePageSearch } from '@/hooks/usePageSearch'
 import { modalConfig } from './config/modal.config'
 import { usePageModal } from '@/hooks/usePageModal'
+import { useStore } from '@/store'
 export default defineComponent({
   name: 'user',
   // components: { PageSearch, zyTable },
@@ -63,6 +64,27 @@ export default defineComponent({
       )
       passwordItem!.isHidden = true
     }
+    //2、动态添加部门和角色列表
+    const store = useStore()
+    //vuex发生改变会重新执行 动态数据 发生改变需要页面重新刷新的
+    const modalConfigRef = computed(() => {
+      //改的是引用
+      const departmentItem = modalConfig.formItems.find(
+        (item) => item.field === 'departmentId'
+      )
+      departmentItem!.options = store.state.entireDepartment.map((item) => {
+        return { title: item.name, value: item.id }
+      })
+      const roleItem = modalConfig.formItems.find(
+        (item) => item.field === 'roleId'
+      )
+      roleItem!.options = store.state.enitreRole.map((item) => {
+        return { title: item.name, value: item.id }
+      })
+      return modalConfig
+    })
+
+    //3、调用hook获取公共变量和函数
     const [pageModalRef, defaultInfo, handleNewData, handleEditData] =
       usePageModal(newCallback, editCallback)
     return {
@@ -71,7 +93,7 @@ export default defineComponent({
       handleQueryClick,
       handleResetClick,
       pageContentRef,
-      modalConfig,
+      modalConfigRef,
       handleNewData,
       handleEditData,
       pageModalRef,

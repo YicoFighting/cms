@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-02 15:11:50
- * @LastEditTime: 2021-12-03 19:22:26
+ * @LastEditTime: 2021-12-04 09:59:09
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\store\main\system\system.ts
  * @Description:
@@ -12,7 +12,9 @@ import { Module } from 'vuex'
 import { ISystemState } from './type'
 import {
   getPageListData,
-  deletePageDateById
+  deletePageDateById,
+  createPageData,
+  editPageData
 } from '@/service/main/system/system'
 const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
@@ -126,6 +128,40 @@ const systemModule: Module<ISystemState, IRootState> = {
       //2、调用删除网络请求
       await deletePageDateById(pageUrl)
       //3、重新请求最新的数据
+      dispatch('getPageListAction', {
+        pageName,
+        //删除的时候 应该拿到页码数据 请求体的数据  把这些都放到vuex
+        //然后在这里再全部拿到 然后再请求数据
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    //新建
+    async createPageDataAction({ dispatch }, payload: any) {
+      //1、创建数据的请求
+      const { pageName, newData } = payload
+      const pageUrl = `/${pageName}`
+      await createPageData(pageUrl, newData)
+      //2、请求最新的数据
+      dispatch('getPageListAction', {
+        pageName,
+        //删除的时候 应该拿到页码数据 请求体的数据  把这些都放到vuex
+        //然后在这里再全部拿到 然后再请求数据
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    //编辑
+    async editPageDataAction({ dispatch }, payload: any) {
+      //1、创建数据的请求
+      const { pageName, editData, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+      await editPageData(pageUrl, editData)
+      //2、请求最新的数据
       dispatch('getPageListAction', {
         pageName,
         //删除的时候 应该拿到页码数据 请求体的数据  把这些都放到vuex

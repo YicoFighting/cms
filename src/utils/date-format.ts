@@ -2,7 +2,7 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-02 17:15:50
- * @LastEditTime: 2021-12-02 21:23:30
+ * @LastEditTime: 2021-12-04 10:29:28
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\utils\date-format.ts
  * @Description:
@@ -18,5 +18,6 @@ export function formatUtcString(
   format: string = DATE_TIME_FORMAT
 ) {
   //这个格式化默认使用的是 零时区
-  return dayjs.utc(utcString).format(format)
+  //偏移8小时
+  return dayjs.utc(utcString).utcOffset(8).format(format)
 }

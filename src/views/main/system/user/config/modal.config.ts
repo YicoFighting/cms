@@ -2,12 +2,13 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-12-03 19:40:06
- * @LastEditTime: 2021-12-03 20:44:49
+ * @LastEditTime: 2021-12-04 09:07:33
  * @Email: 2604482363@qq.com
  * @FilePath: \TEST_coder\src\views\main\system\user\config\modal.config.ts
  * @Description:
  */
-export const modalConfig = {
+import { IForm } from '@/base-ui/form'
+export const modalConfig: IForm = {
   formItems: [
     {
       field: 'name',
@@ -33,6 +34,20 @@ export const modalConfig = {
       type: 'input',
       label: '电话号码',
       placeholder: '请输入电话号码'
+    },
+    {
+      field: 'departmentId',
+      type: 'select',
+      label: '选择部门',
+      placeholder: '请选择部门',
+      options: []
+    },
+    {
+      field: 'roleId',
+      type: 'select',
+      label: '选择角色',
+      placeholder: '请选择角色',
+      options: []
     }
   ],
   colLayout: { span: 24 },
