@@ -2,9 +2,9 @@
  * @Author: Yico
  * @LastEditors: Yico
  * @Date: 2021-11-04 19:36:50
- * @LastEditTime: 2021-12-01 19:48:23
+ * @LastEditTime: 2021-12-06 13:38:39
  * @Email: 2604482363@qq.com
- * @FilePath: \TEST_coder\src\router\index.ts
+ * @FilePath: \CMS\src\router\index.ts
  * @Description:
  */
 
@@ -34,7 +34,7 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   routes,
-  history: createWebHistory('/xiao/')
+  history: createWebHistory()
 })
 //导航守卫:在这里进行动态路由拼接  黑马cms
 router.beforeEach((to) => {
