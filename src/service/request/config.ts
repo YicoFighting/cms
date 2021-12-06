@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
   BASE_URL = '/api'
   TIME_OUT = 10000
 } else if (process.env.NODE_ENV === 'production') {
-  BASE_URL = '/api'
+  BASE_URL = 'http://152.136.185.210:5000'
   TIME_OUT = 10001
 } else {
   BASE_URL = '/api'
